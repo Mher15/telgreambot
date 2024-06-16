@@ -31,10 +31,9 @@ const Welcom = () => {
       //  window.Telegram.WebApp.offEvent('backButtonClicked', onClickBeckStep)
        window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
        window.Telegram.WebApp.ready();
-       var BackButton = WebApp.BackButton;
+       var BackButton = window.Telegram.BackButton;
        BackButton.show();
        BackButton.onClick(function () {
-         WebApp.showAlert("BackButton clicked");
          BackButton.hide();
        });
        WebApp.onEvent('backButtonClicked', onClickBeckStep);
