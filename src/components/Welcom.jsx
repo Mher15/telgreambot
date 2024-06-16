@@ -30,7 +30,6 @@ const Welcom = () => {
        let initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
        window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
        window.Telegram.WebApp.ready();
-       
        setTest(initDataUnsafe);
      }
    };
