@@ -19,12 +19,14 @@ const Welcom = () => {
   const [showpopUp2, setShowpopUp2] = useState(false)
   const [showpopUp3, setShowpopUp3] = useState(false)
   const [test, setTest] = useState(null)
-
+  const [initData, setInitData] = useState(null)
+// 963717429
  useEffect(() => {
    const initTelegram = () => {
      if (typeof window.Telegram !== 'undefined' && typeof window.Telegram.WebApp !== 'undefined') {
        window.Telegram.WebApp.expand();
        let initData = window.Telegram.WebApp.initData || '';
+       setInitData(initData)
        let initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
        window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
        window.Telegram.WebApp.ready();
@@ -77,6 +79,7 @@ const Welcom = () => {
               {test ? (
         <div>
           <p>User ID: {test.user?.id}</p>
+          <p>User{initData}</p>
           <p>Username: {test.user?.username}</p>
           <p>First Name: {test.user?.first_name}</p>
           <p>Last Name: {test.user?.last_name}</p>
