@@ -26,8 +26,6 @@ const Welcom = () => {
       let initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
       window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
       window.Telegram.WebApp.ready();
-      console.log('initDataUnsafe', initDataUnsafe)
-      console.log('initData', initData)
     }
   }, []);
 
@@ -61,6 +59,7 @@ const Welcom = () => {
     return (
       <>
       <div className="sliderTitle">
+        <h1> test{initDataUnsafe.user.id}</h1>
           <h1 className="greeting">Добро</h1>
           <h1 className="greeting">пожаловать</h1>
           <h2 className="under_greeting">Это <span
