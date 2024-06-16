@@ -29,7 +29,8 @@ const Welcom = () => {
        setInitData(initData)
        let initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
        window.Telegram.WebApp.BackButton.show();
-       window.Telegram.WebApp.offEvent('backButtonClicked', onClickBeckStep)
+       window.Telegram.WebApp.BackButton.onClick(onClickBeckStep)
+      //  window.Telegram.WebApp.offEvent('backButtonClicked', onClickBeckStep)
        window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
        window.Telegram.WebApp.ready();
        setTest(initDataUnsafe);
