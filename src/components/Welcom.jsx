@@ -32,10 +32,10 @@ const Welcom = () => {
        window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
        window.Telegram.WebApp.ready();
        setTest(initDataUnsafe);
-       if (typeof window.Telegram !== 'undefined' && typeof window.Telegram.WebApp !== 'undefined') {
-         window.Telegram.WebApp.offEvent('backButtonClicked', handleBackButtonClicked);
-       }
-     }
+      }
+      if (typeof window.Telegram !== 'undefined' && typeof window.Telegram.WebApp !== 'undefined') {
+        window.Telegram.WebApp.offEvent('backButtonClicked', onClickBeckStep);
+      }
    };
 
    // Check if the Telegram Web Apps API script is loaded
