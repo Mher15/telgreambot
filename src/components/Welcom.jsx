@@ -19,6 +19,19 @@ const Welcom = () => {
   const [showpopUp2, setShowpopUp2] = useState(false)
   const [showpopUp3, setShowpopUp3] = useState(false)
 
+  useEffect(() => {
+    if (typeof window.Telegram !== 'undefined' && typeof window.Telegram.WebApp !== 'undefined') {
+      window.Telegram.WebApp.expand();
+      let initData = window.Telegram.WebApp.initData || '';
+      let initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
+      window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
+      window.Telegram.WebApp.ready();
+      console.log('initDataUnsafe', initDataUnsafe)
+      console.log('initData', initData)
+    }
+  }, []);
+
+
   const onClickNextStep = ()=>{
     setStep(step + 1)
   }
