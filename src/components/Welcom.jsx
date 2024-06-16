@@ -28,6 +28,7 @@ const Welcom = () => {
        let initData = window.Telegram.WebApp.initData || '';
        setInitData(initData)
        let initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
+       window.Telegram.WebApp.offEvent('backButtonClicked', callback)
        window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
        window.Telegram.WebApp.ready();
        setTest(initDataUnsafe);
@@ -169,7 +170,7 @@ const Welcom = () => {
   return (
     <div className='article'>
         <div>
-            <Beck step={step} onClick={onClickBeckStep} />
+            <Beck step={step} onClick={callback} />
            {
              showContetn()
            }
