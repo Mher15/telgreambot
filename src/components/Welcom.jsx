@@ -28,9 +28,16 @@ const Welcom = () => {
        let initData = window.Telegram.WebApp.initData || '';
        setInitData(initData)
        let initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
-       window.Telegram.WebApp.offEvent('backButtonClicked', onClickBeckStep)
+      //  window.Telegram.WebApp.offEvent('backButtonClicked', onClickBeckStep)
        window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
        window.Telegram.WebApp.ready();
+       var BackButton = WebApp.BackButton;
+       BackButton.show();
+       BackButton.onClick(function () {
+         WebApp.showAlert("BackButton clicked");
+         BackButton.hide();
+       });
+       WebApp.onEvent('backButtonClicked', onClickBeckStep);
        setTest(initDataUnsafe);
      }
    };
