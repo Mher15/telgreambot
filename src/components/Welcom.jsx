@@ -18,20 +18,31 @@ const Welcom = () => {
   const [showpopUp1, setShowpopUp1] = useState(false)
   const [showpopUp2, setShowpopUp2] = useState(false)
   const [showpopUp3, setShowpopUp3] = useState(false)
-  const [test, setTest] = useState(false)
+  const [test, setTest] = useState(null)
 
-  useEffect(() => {
-    console.log('window.Telegram', window.Telegram)
-    if (typeof window.Telegram !== 'undefined' && typeof window.Telegram.WebApp !== 'undefined') {
-      window.Telegram.WebApp.expand();
-      let initData = window.Telegram.WebApp.initData || '';
-      let initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
-      window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
-      window.Telegram.WebApp.ready();
-      setTest(window.Telegram.WebApp.initDataUnsafe)
-      
-    }
-  }, []);
+ useEffect(() => {
+   const initTelegram = () => {
+     if (typeof window.Telegram !== 'undefined' && typeof window.Telegram.WebApp !== 'undefined') {
+       window.Telegram.WebApp.expand();
+       let initData = window.Telegram.WebApp.initData || '';
+       let initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
+       window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
+       window.Telegram.WebApp.ready();
+       setTest(initDataUnsafe);
+     }
+   };
+
+   // Check if the Telegram Web Apps API script is loaded
+   if (typeof window.Telegram === 'undefined') {
+     // Wait for the script to load
+     const script = document.createElement('script');
+     script.src = 'https://telegram.org/js/telegram-web-app.js';
+     script.onload = initTelegram;
+     document.head.appendChild(script);
+   } else {
+     initTelegram();
+   }
+ }, []);
 
 
   const onClickNextStep = ()=>{
@@ -63,7 +74,17 @@ const Welcom = () => {
     return (
       <>
       <div className="sliderTitle">
-        <h1> test {test}</h1>
+              {test ? (
+        <div>
+          <p>User ID: {test.user?.id}</p>
+          <p>Username: {test.user?.username}</p>
+          <p>First Name: {test.user?.first_name}</p>
+          <p>Last Name: {test.user?.last_name}</p>
+        </div>
+      ) : (
+        <p>Loading user information...</p>
+      )}
+
           <h1 className="greeting">Добро</h1>
           <h1 className="greeting">пожаловать</h1>
           <h2 className="under_greeting">Это <span
