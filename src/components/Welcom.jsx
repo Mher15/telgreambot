@@ -21,13 +21,15 @@ const Welcom = () => {
   const [test, setTest] = useState(false)
 
   useEffect(() => {
+    console.log('window.Telegram', window.Telegram)
     if (typeof window.Telegram !== 'undefined' && typeof window.Telegram.WebApp !== 'undefined') {
       window.Telegram.WebApp.expand();
       let initData = window.Telegram.WebApp.initData || '';
       let initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
       window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
       window.Telegram.WebApp.ready();
-      setTest(initDataUnsafe.user.id)
+      setTest(window.Telegram.WebApp.initDataUnsafe)
+      
     }
   }, []);
 
