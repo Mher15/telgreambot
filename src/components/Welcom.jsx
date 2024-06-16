@@ -28,10 +28,18 @@ const Welcom = () => {
        let initData = window.Telegram.WebApp.initData || '';
        setInitData(initData)
        let initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
-       window.Telegram.WebApp.BackButton.show();
+      //  window.Telegram.WebApp.BackButton.show();
       //  window.Telegram.WebApp.BackButton.onClick(onClickBeckStep)
-       window.Telegram.WebApp.offEvent('backButtonClicked', onClickBeckStep)
-       window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
+      //  window.Telegram.WebApp.offEvent('backButtonClicked', onClickBeckStep)
+       var BackButton = window.Telegram.WebApp.BackButton;
+       BackButton.show();
+       BackButton.onClick(function () {
+         window.Telegram.WebApp.showAlert("BackButton clicked");
+         BackButton.hide();
+       });
+       window.Telegram.WebApp.onEvent('backButtonClicked', function () {
+         onClickBeckStep()
+       });
        window.Telegram.WebApp.ready();
        setTest(initDataUnsafe);
      }
