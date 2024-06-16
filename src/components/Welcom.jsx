@@ -33,10 +33,6 @@ const Welcom = () => {
       //  window.Telegram.WebApp.offEvent('backButtonClicked', onClickBeckStep)
        var BackButton = window.Telegram.WebApp.BackButton;
        BackButton.show();
-       BackButton.onClick(function () {
-         window.Telegram.WebApp.showAlert("BackButton clicked");
-         BackButton.hide();
-       });
        window.Telegram.WebApp.onEvent('backButtonClicked', function () {
          onClickBeckStep()
        });
