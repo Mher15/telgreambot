@@ -18,6 +18,7 @@ const Welcom = () => {
   const [showpopUp1, setShowpopUp1] = useState(false)
   const [showpopUp2, setShowpopUp2] = useState(false)
   const [showpopUp3, setShowpopUp3] = useState(false)
+  const [test, setTest] = useState(false)
 
   useEffect(() => {
     if (typeof window.Telegram !== 'undefined' && typeof window.Telegram.WebApp !== 'undefined') {
@@ -26,6 +27,7 @@ const Welcom = () => {
       let initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
       window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
       window.Telegram.WebApp.ready();
+      setTest(initDataUnsafe.user.id)
     }
   }, []);
 
@@ -59,7 +61,7 @@ const Welcom = () => {
     return (
       <>
       <div className="sliderTitle">
-        <h1> test{initDataUnsafe.user.id}</h1>
+        <h1> test {test}</h1>
           <h1 className="greeting">Добро</h1>
           <h1 className="greeting">пожаловать</h1>
           <h2 className="under_greeting">Это <span
